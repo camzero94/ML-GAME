@@ -18,6 +18,7 @@ class GameStatus(StringEnum):
 
 class Scene:
     area_rect = pygame.Rect(0, 0, 200, 500)
+    
 
     def __init__(self, difficulty, level):
         self._level = level
@@ -27,6 +28,7 @@ class Scene:
         self._ball_served = False
 
         self._create_scene()
+        
 
     def _create_scene(self):
         self._create_moves()

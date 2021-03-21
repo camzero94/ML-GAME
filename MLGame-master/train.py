@@ -19,7 +19,7 @@ game_command = data['ml']['command']
 #print(game_info)
 #print(game_command)
 
-for i in range(1, 167):
+for i in range(1, 184):
     path = r"C:\Users\User\Desktop\NCKU\INTRODUCCION-ML\MLGame-master\games\arkanoid\log\n1 (" + str(i) + ").pickle"
     file = open(path, "rb")
     data = pickle.load(file)

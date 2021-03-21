@@ -10,9 +10,12 @@ class MLPlay:
         """
         self.ball_pos = [93,93]
         self.ball_served = False
+       
 
     def update(self, scene_info): 
-    
+      
+     #  print (scene_info["bricks"][7][1])
+        #print(len(scene_info["bricks"]))
         ballPos = self.ball_pos
         
         """
@@ -26,14 +29,20 @@ class MLPlay:
 
         # if not self.ball_served:
         #     self.ball_served = True
-        #     command = "SERVE_TO_RIGHT"    
-        if not self.ball_served:
-            if scene_info["platform"][0] > 100:
-                self.ball_served = True
-                command = "SERVE_TO_LEFT"
-            else:
-                command = "MOVE_RIGHT"
-            return command
+        #     command = "SERVE_TO_RIGHT" 
+           
+        if not self.ball_served :
+            if len(scene_info["bricks"]) >93 :
+                if scene_info["platform"][0] > 90:
+                    self.ball_served = True
+                    command = "SERVE_TO_LEFT"
+                else:
+                    command = "MOVE_RIGHT"
+
+
+                    return command
+    
+
 
         if (scene_info["ball"][1] - ballPos[1] != 0 and ballPos[1] > 150):
             xVal = ballPos[0] + ((400 - ballPos[1]) * ((scene_info["ball"][0] - ballPos[0]) / (scene_info["ball"][1] - ballPos[1])))
