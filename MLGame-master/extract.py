@@ -73,8 +73,8 @@ x = np.hstack((ball_x.reshape(-1, 1),
                direction.reshape(-1, 1),
                platform.reshape(-1, 1)))
 y = target
-
-#print (x,y)
+w = '\n'
+print (x,3*w,y)
 
 # train data
 from sklearn.neighbors import KNeighborsClassifier
@@ -83,5 +83,5 @@ model = KNeighborsClassifier(n_neighbors=3)
 print(model.fit(x, y))
 print(model.score(x, y))
 
-with open('m1.pickle', 'wb') as f:
+with open('extract.pickle', 'wb') as f:
     pickle.dump(model, f)

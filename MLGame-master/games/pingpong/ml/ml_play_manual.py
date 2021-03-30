@@ -16,6 +16,7 @@ class MLPlay:
         pygame.display.set_caption("Invisible joystick")
 
     def update(self, scene_info):
+        print(scene_info["platform_1P"][0],scene_info["platform_2P"][0],)
         if scene_info["status"] != "GAME_ALIVE":
             return "RESET"
 
