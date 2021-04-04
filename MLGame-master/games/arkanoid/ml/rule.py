@@ -17,7 +17,7 @@ class MLPlay:
      #  print (scene_info["bricks"][7][1])
         #print(len(scene_info["bricks"]))
         ballPos = self.ball_pos
-        
+    
         """
         Generate the command according to the received `scene_info`.
         """
@@ -38,8 +38,6 @@ class MLPlay:
                     command = "SERVE_TO_LEFT"
                 else:
                     command = "MOVE_RIGHT"
-
-
                     return command
     
 
