@@ -23,9 +23,14 @@ class Platform(pygame.sprite.Sprite):
         self._shift_speed = 5
         self._speed = [0, 0]
         self._init_pos = init_pos
+        self.xValue = 0
 
         self.rect = pygame.Rect(*init_pos, 40, 30)
         self.image = self._create_surface(side, color)
+
+#    def get_xVal(self):
+#           return xValue
+        
 
     def _create_surface(self, side, color):
         surface = pygame.Surface((self.rect.width, self.rect.height))
@@ -45,11 +50,13 @@ class Platform(pygame.sprite.Sprite):
             pygame.Rect(0, 0, self.rect.width, self.rect.height), 1)
 
         return surface
-
+    #def xValue(self,side)
     @property
     def pos(self):
         return self.rect.topleft
-
+    def xVal(self):
+            return self.xValue
+        
     def reset(self):
         self.rect.x, self.rect.y = self._init_pos
 
@@ -125,6 +132,7 @@ class Ball(pygame.sprite.Sprite):
     def pos(self):
         return self.rect.topleft
 
+    
     @property
     def speed(self):
         return tuple(self._speed)

@@ -1,6 +1,7 @@
 import pygame
 import random
 from mlgame.utils.enum import StringEnum, auto
+from games.pingpong.ml.rule import MLPlay
 
 from .gameobject import (
     Ball, Blocker, Platform, PlatformAction, SERVE_BALL_ACTIONS
@@ -20,7 +21,7 @@ class GameStatus(StringEnum):
     GAME_DRAW = auto()
     GAME_ALIVE = auto()
 
-class Scene:
+class Scene():
     area_rect = pygame.Rect(0, 0, 200, 500)
 
     def __init__(self, difficulty: Difficulty):
@@ -29,14 +30,21 @@ class Scene:
         self._game_status = GameStatus.GAME_ALIVE
         self._ball_served = False
         self._ball_served_frame = 0
-
+        self.xVal_1P = 0
+        self.xVal_2P = 0
+        
+        
         self._create_scene()
+    
 
     def _create_scene(self):
         self._draw_group = pygame.sprite.RenderPlain()
 
         enable_slice_ball = False if self._difficulty == Difficulty.EASY else True
         self._ball = Ball(Scene.area_rect, enable_slice_ball, self._draw_group)
+     #   self.xVal_1P = MLPlay("1P"),
+      #  self.xVal_2P = MLPlay("2P"),
+        
         self._platform_1P = Platform((80, Scene.area_rect.height - 80),
             Scene.area_rect, "1P", color_1P, self._draw_group)
         self._platform_2P = Platform((80, 50),
@@ -112,6 +120,11 @@ class Scene:
     def draw_gameobjects(self, surface):
         self._draw_group.draw(surface)
 
+   # def getValue(self,side):
+
+   #     if side == "1P":
+   #         return 
+
     def get_scene_info(self):
         """
         Get the scene information
@@ -122,7 +135,10 @@ class Scene:
             "ball": self._ball.pos,
             "ball_speed": self._ball.speed,
             "platform_1P": self._platform_1P.pos,
-            "platform_2P": self._platform_2P.pos
+            "platform_2P": self._platform_2P.pos,
+            "xValue_1P": self.xVal_1P,
+            "xValue_2P": self.xVal_2P,
+            
         }
 
         if self._difficulty == Difficulty.HARD:
